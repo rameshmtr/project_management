@@ -1,0 +1,207 @@
+body{
+    margin: 0px;
+    font-family: Arial, Arial, Helvetica, sans-serif;
+    background-color: rgb(40, 40, 40);
+    color: black;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+.banner{
+    width: 100%;
+    position: fixed;
+    text-align: center;
+    font-size: 0.8rem;
+    margin: 0px;
+    background-color: rgb(135, 206, 250);
+    box-shadow: 0px 2px 3px rgb(0, 0, 0, 0.5);
+}
+.banner h1{
+    margin: 0.3rem;
+}
+.menu{
+    height: 100%;
+    width: 20%;
+    background-color: rgb(135, 206, 250);
+    position: fixed;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.8);
+    overflow-y: visible;
+    overflow-x: hidden;
+}
+.menu h2{
+    margin-top: 70px;
+    margin-left: 18%;
+    display: inline-block;
+}
+.menu button{
+    margin-top: 68px;
+    float: right;
+    margin-right: 18%;
+}
+.menu ul{
+    margin-top: 10px;
+    list-style-type: none;
+    float: left;
+    margin-left: -10%;
+}
+.menu li{
+    margin-bottom: 15px;
+    text-decoration: none;
+    color: white;
+    font-weight: 800;
+    font-size: 1.2em;
+}
+.menu input{
+    border-style: none;
+    background-color: rgb(255, 79, 79);
+    color: white;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px rgb(0, 0, 0, 0.8);
+    padding: 2px 9px 2px 9px;
+    margin-bottom: 15px;
+    transition: box-shadow 0.4s;
+    width: 93%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-weight: 600;
+}
+.menu input:hover{
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.8);
+    cursor: pointer;
+}
+
+.button{
+    background-color: rgb(135, 206, 250);
+    text-decoration: none;
+    border-style: none;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.8);
+    color: white;
+    font-weight: 800;
+    font-size: 1.2em;
+    padding: 2px 9px 2px 9px;
+    transition: box-shadow 0.4s;
+}
+.button:hover{
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.8);
+    cursor: pointer;
+}
+
+.content{
+    margin-top: 2.8rem;
+    margin-left: 17%;
+    float: left;
+}
+
+.title{
+    background-color: rgb(100, 100, 100);
+    margin-top: 1.5rem;
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.8);
+    display: inline-block;
+}
+
+.title-input{
+    margin: 0px;
+    width: 450px;
+    background-color: rgb(100, 100, 100);
+    border-style: none;
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+}
+.task{
+    float: left;
+    margin-top: 20px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: rgb(100, 100, 100);
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.8);
+    margin-right: 20px;
+}
+
+.task-input{
+    margin-bottom: 20px;
+    background-color: rgb(12, 128, 236);
+    width: 290px;
+    border-style: none;
+    color: white;
+    font-size: 1.2em;
+    font-weight: 600;
+}
+.secondbanner{
+    width: 100%;
+    position: fixed;
+    text-align: left ;
+    font-size: 1.5rem;
+    margin: 10rem;
+    color: white;
+}
+.secondbanner h1{
+    margin: 10rem;
+}
+.secondbanner h6{
+    margin: 10rem;
+    width: 50%;
+    position: relative;
+    text-align: left ;
+}
+.taskbanner{
+    width: 100%;
+    position: absolute;
+    text-align: center ;
+    font-size: 1.5rem;
+    margin:10rem;
+    color: white;
+}
+.taskbanner h1{
+    margin: 10rem;
+}
+
+.taskbanner table{
+    margin: 10rem;
+}
+
+table, th, td {
+    text-align: center;
+    border-spacing: 0px;
+    table-layout: fixed;
+    margin-left: auto;
+    margin-right: auto;
+    width:190px;
+    border: 1px solid white;
+    word-wrap: break-word;
+    color: white;
+}
+
+.form {
+    width: 100%;
+    position: fixed;
+    text-align: left ;
+    font-size: 1.5rem;
+    margin:10rem;
+    color: white;
+}
+.topcorner{
+    width: 100%;
+    position: fixed;
+    text-align: left ;
+    font-size: 1rem;
+    color: white;
+}
+
+.taskcontainer{
+    width: 100%;
+    position: absolute;
+    text-align: center ;
+    font-size: 1.5rem;
+    margin:10rem;
+    color: white;
+    overflow-x: hidden;
+}
+
+.taskcontainer h4{
+    font-style: 1px;
+}
+
+  

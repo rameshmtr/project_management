@@ -1,0 +1,34 @@
+{% load static from static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Projet Management</title>
+    <link rel="stylesheet" href="{%static 'styles.css'%}">
+</head>
+<body>
+    <div class="banner">
+        <h1 style="text-align: center;">Project Management</h1>
+    </div>
+    <div class="menu">
+        <a href="../../../..">
+            <h2>Projects</h2>     
+        </a>
+        <ul id= "task">
+            <li><h3>{{project.name}}</h3></li>
+            <li><h5>{{project.duration}}</li>
+            <li><h6>{{project.description}}</h6></li>
+            <img src="{%static 'body.png'%}"  width="200" height="200">
+        </ul>
+    </div>
+    <div class="taskcontainer">
+        <h1>Task Details</h1>
+        <ul>
+            <h1>{{task.name}}</h1>
+            <h4>{{task.description}}</h4>
+            <h4>{{task.start_date}}</h4>
+            <h4>{{task.end_date}}</h4>
+            <h4>{{task.user}}</h4>
+        </ul>
+    </div>
+</body>

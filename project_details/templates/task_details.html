@@ -1,0 +1,51 @@
+{% load static from static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Projet Management</title>
+    <link rel="stylesheet" href="{%static 'styles.css'%}">
+</head>
+<body>
+    <div class="banner">
+        <h1 style="text-align: center;">Project Management</h1>
+    </div>
+    <div class="menu">
+        <a href="../../..">
+            <h2>Projects</h2>     
+        </a>
+        <ul id= "task">
+            <li><h3>{{project.name}}</h3></li>
+            <li><h5>{{project.duration}}</h5></li>
+            <li><h6>{{project.description}}</h6></li>
+            <img src="{%static 'body.png'%}"  width="200" height="200">
+        </ul>
+    </div>
+    <div class="taskbanner">
+        <h1>Task Lists</h1>
+        <form action="create" method="get">
+            <button class="button">Add Task</button>
+        </form>
+
+        <table style="width:50%">
+        <tr>
+            <th>Task Name</th>
+            <th>Description</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Assignee</th>
+            <th>Actions</th>
+        </tr>
+        {%for task in tasks%}
+        <tr>
+            <td>{{task.name}}</td>
+            <td>{{task.description}}</td>
+            <td>{{task.start_date}}</td>
+            <td>{{task.end_date}}</td>
+            <td>{{task.user}}</td>
+            <td><input onclick="window.location.href='{{task.id}}'" type="submit" value="View" /></a></td>
+        </tr>
+        {%endfor%}
+        </table>
+    </div>
+</body>

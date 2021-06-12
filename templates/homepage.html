@@ -1,0 +1,29 @@
+{% load static from static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Projet Management</title>
+    <link rel="stylesheet" href="{%static 'styles.css'%}">
+</head>
+<body>
+    <div class="banner">
+        <h1 style="text-align: center;">Project Management</h1>
+    </div>
+    <div class="menu">
+        <h2>Projects</h2>
+        <form action="/project/create/" method="get">
+            <button class="button">AddProject</button>
+        </form>
+        <ul id= "projects">
+            {%for project in projects%}
+            <li>{{project.name}}</li>
+            <li><h6><a href=/project/details/{{project.id}}>view details>></a></h6></li>
+            {% endfor%}
+        </ul>
+    </div>
+    <div class="secondbanner">
+        <h1>Welcome to Project Management</h1>
+        <h6>Manage Your Projects and Tasks</h6>
+    </div>
+</body>
