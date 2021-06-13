@@ -11,15 +11,20 @@
         <h1 style="text-align: center;">Project Management</h1>
     </div>
     <div class="menu">
+        <form action="/project/details/delete/{{projects.id}}/" method="post">
+            <button class="button" onclick="window.location.href='/project/delete/{{projects.id}}/'">Delete</button>
+        </form>
+        <form action="/project/details/update/{{projects.id}}/" method="get">
+            <button class="button" onclick="window.location.href='/project/details/{{projects.id}}'">Edit</button>
+        </form>
         <a href="../../..">
             <h2>Projects</h2>     
         </a>
-        <button class="button" formmethod='put' onclick="window.location.href='/project/details/{{projects.id}}'">Edit</button>
         <ul id= "projects">
             <li><h3>{{projects.name}}</h3></li>
             <li><h5>{{projects.duration}}</h5></li>
             <li><h6>{{projects.description}}</h6></li>
-            <img src="{%static 'body.png'%}"  width="200" height="200">
+            <img src="{%static 'stars.jpg'%}" width="200" height="200">
         </ul>
     </div>
     <div class="taskbanner">

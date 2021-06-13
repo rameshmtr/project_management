@@ -47,5 +47,13 @@
         </tr>
         {%endfor%}
         </table>
+        {%for task in tasks%}
+        <form action="/project/{{project.id}}/task/update/{{task.id}}/" method="get">
+            <td><input onclick="window.location.href='{{task.id}}'" type="submit" value="Edit" /></a></td>
+        </form>
+        <form action="/project/{{project.id}}/task/delete/{{task.id}}/" method="post">
+            <td><input onclick="window.location.href='{{task.id}}'" type="submit" value="Delete" /></a></td>
+        </form>
+        {%endfor%}
     </div>
 </body>

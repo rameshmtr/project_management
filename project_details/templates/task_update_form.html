@@ -11,27 +11,28 @@
       <h1 style="text-align: center;">Project Management</h1>
     </div>
     <div class="topcorner">
-      <a href="../../../../">
+      <a href="../../../../../">
         <h6>Home</h6>
       </a>
     </div>
     <form action="", method="post">
       <div class="form">
-        <h1>Create Task</h1>
+        <h1>Update Task</h1>
+
         <label for="name">Task Name:</label><br>
-        <input type="text" id="name" name="name"><br>
+        <input type="text" id="name" name="name" value="{{task.name}}"><br>
         
         <label for="description">Description:</label><br>
-        <input type="text" id="description" name="description"><br>
+        <input type="text" id="description" name="description" value="{{task.description}}"><br>
         
         <label for="start_date">Start Date:</label><br>
-        <input type="date" id="start_date" name="start_date"><br>
+        <input type="date" id="start_date" name="start_date" value="{{task.start_date}}"><br>
 
         <label for="end_date">End Date:</label><br>
-        <input type="date" id="end_date" name="end_date"><br><br>
+        <input type="date" id="end_date" name="end_date" value="{{task.end_date}}"><br><br>
 
         <label for="user">Assignee:</label>
-        <select id={{user.id}} name='user'>
+        <select id={{user.id}} name='user' value='task.user'>
           {%for user in users%}
           <option value={{user.id}}>{{user.username}}</option>
           {%endfor%}

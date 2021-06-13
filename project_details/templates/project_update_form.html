@@ -1,0 +1,39 @@
+{% load static from static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Projet Management</title>
+    <link rel="stylesheet" href="{%static 'styles.css'%}">
+</head>
+<body>
+    <div class="banner">
+      <h1 style="text-align: center;">Project Management</h1>
+    </div>
+    <div class="topcorner">
+      <a href="../../../..">
+        <h6>Home</h6>
+      </a>
+    </div>
+    <form action="{% url 'Project Update' pk=projects.pk%}", method="post">
+      <div class="form">
+        <h1>Update Project</h1>
+        <label for="name">Title:</label><br>
+        <input type="text" id="name" name="name" value={{projects.name}}><br>
+        
+        <label for="description">Description:</label><br>
+        <input type="text" id="description" name="description" value={{projects.description}}><br>
+        
+        <label for="duration">Duration:</label><br>
+        <input type="text" id="duration" name="duration" value={{projects.duration}}><br>
+        
+        <label for="image">Image:</label><br>
+        <input type="file" id="image" name="image" accept="image/*"><br><br>
+        
+        <input type="submit" value="Submit">
+      </div>
+
+
+    </form>
+    
+</body>

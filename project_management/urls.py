@@ -5,7 +5,7 @@ from .views import ProjectManagementList
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', ProjectManagementList.as_view()),
+    path('', ProjectManagementList.as_view(), name='Homepage'),
     path('project/', include('project_details.urls')),
 ]
 

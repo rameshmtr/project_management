@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 from .serializers import ProjectManagementSerializer, TaskManagementSerializer
 
 # -------------------restframework imports-----------------
-from rest_framework import status
+from rest_framework import serializers, status
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.renderers import TemplateHTMLRenderer
@@ -24,9 +24,7 @@ class ProjectManagementCreate(APIView):
     template_name = 'projectform.html'
 
     def get(self, request):
-        profile = get_object_or_404(ProjectManagement, pk=1)
-        serializer = ProjectManagementSerializer(profile)
-        return Response({'serializer': serializer, 'profile': profile})
+        return Response(status=200)
 
     def post(self, request):
 
@@ -35,7 +33,7 @@ class ProjectManagementCreate(APIView):
                                                     duration = request.data.get('duration'),
                                                     image = request.data.get('image'))
         instance .save()
-        return redirect('Project Create')
+        return redirect('Homepage')
 
 class ProjectManagementDetail(APIView):
 
@@ -51,11 +49,29 @@ class ProjectManagementDetail(APIView):
     def get(self, request, pk):
 
         queryset = self.get_object(pk)
+        serializer = ProjectManagementSerializer(queryset).data
+
+        return Response({'projects': queryset})
+
+class ProjectUpdateView(APIView):
+
+    renderer_classes = [TemplateHTMLRenderer]
+    template_name = 'project_update_form.html'
+
+    def get_object(self, pk):
+        try:
+            return ProjectManagement.objects.get(pk=pk)
+        except ProjectManagement.DoesNotExist:
+            raise Http404
+
+    def get(self, request, pk):
+
+        queryset = self.get_object(pk)
 
         return Response({'projects': queryset})
 
     
-    def put(self, request,pk):
+    def post(self, request,pk):
 
         instance = self.get_object(pk)
 
@@ -72,16 +88,26 @@ class ProjectManagementDetail(APIView):
             instance.image = request.data.get('image')
 
         instance.save()
+        return redirect('Project Details', pk)
 
-        return Response(ProjectManagementSerializer(instance).data)
 
+class ProjectDelete(APIView):
 
-    def delete(self, request,pk):
+    renderer_classes = [TemplateHTMLRenderer]
+    template_name = 'project_detail.html'
+
+    def get_object(self, pk):
+        try:
+            return ProjectManagement.objects.get(pk=pk)
+        except ProjectManagement.DoesNotExist:
+            raise Http404
+
+    def post(self, request,pk):
 
         instance = self.get_object(pk)
         instance.delete()
 
-        return Response(status=200)
+        return redirect("Homepage")
 
 
 class TaskManagementList(APIView):
@@ -104,9 +130,8 @@ class TaskManagementCreate(APIView):
     template_name = 'task_form.html'
 
     def get(self, request, project_pk):
-        profile = get_object_or_404(TaskManagement, pk=1)
-        serializer = TaskManagementSerializer(profile)
-        return Response({'serializer': serializer, 'profile': profile})
+        user = User.objects.all()
+        return Response({'users':user})
 
     def post(self, request, project_pk):
         instance = TaskManagement.objects.create(name = request.data.get('name'),
@@ -114,11 +139,12 @@ class TaskManagementCreate(APIView):
                                                 start_date = request.data.get('start_date'),
                                                 end_date = request.data.get('end_date'),
                                                 project = ProjectManagement.objects.get(id = project_pk),
-                                                user = User.objects.get(id = 1))
+                                                user = User.objects.get(id = request.data.get('user')))
 
         instance.save()
 
-        return Response({'messages':'Created Successfully'})
+        return redirect('All Tasks', project_pk)
+
 
 class TaskManagementDetail(APIView):
 
@@ -140,12 +166,31 @@ class TaskManagementDetail(APIView):
 
         return Response({'task': queryset, 'project':project_queryset})
 
-        
-    
-    def put(self, request,pk):
-        print('this')
 
-        instance = self.get_object(pk)
+
+class TaskUpdateview(APIView):
+
+    renderer_classes = [TemplateHTMLRenderer]
+    template_name = 'task_update_form.html'
+
+    def get_object(self, pk, project_pk):
+        try:
+            return TaskManagement.objects.get(pk=pk)
+        except TaskManagement.DoesNotExist:
+            raise Http404
+
+    def get(self, request, pk, project_pk):
+
+        project_queryset = ProjectManagement.objects.get(id = project_pk)
+        user_queryset = User.objects.all()
+        queryset = self.get_object(pk, project_pk)
+        serializer = TaskManagementSerializer(queryset)
+
+        return Response({'task': queryset, 'project':project_queryset, 'users':user_queryset})
+    
+    def post(self, request,pk, project_pk):
+
+        instance = self.get_object(pk, project_pk)
 
         if request.data.get('name'):
             instance.name = request.data.get('name')
@@ -159,21 +204,30 @@ class TaskManagementDetail(APIView):
         if request.data.get('end_date'):
             instance.end_date = request.data.get('end_date')
 
-        if request.data.get('project'):
-            instance.project = ProjectManagement.objects.get(id = request.data.get('project_management'))
-
-        if request.data.get('user_id'):
-            instance.user_id = User.objects.get(id = request.data.get('user_id'))
+        if request.data.get('user'):
+            instance.user_id = User.objects.get(id = request.data.get('user'))
 
         instance.save()
 
-        return Response(TaskManagementSerializer(instance).data)
+        return redirect('All Tasks', project_pk)
 
 
-    def delete(self, request,pk):
+class TaskDelete(APIView):
+
+    renderer_classes = [TemplateHTMLRenderer]
+    template_name = 'task_details.html'
+
+    def get_object(self, pk):
+        try:
+            return TaskManagement.objects.get(pk=pk)
+        except TaskManagement.DoesNotExist:
+            raise Http404
+
+
+    def post(self, request,pk, project_pk):
 
         instance = self.get_object(pk)
         instance.delete()
 
-        return Response(status=200)
+        return redirect('All Tasks', project_pk)
 
